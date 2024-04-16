@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LocationController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -23,3 +24,4 @@ Route::group([
 
 Route::apiResource('brands', BrandController::class);
 Route::apiResource('categories', CategoryController::class);
+Route::apiResource('locations', LocationController::class)->except('index');
