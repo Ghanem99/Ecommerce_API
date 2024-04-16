@@ -26,8 +26,11 @@ Route::group([
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('locations', LocationController::class)->except('index');
     Route::apiResource('products', ProductController::class);
+    
     Route::apiResource('orders', OrderController::class)->only('index', 'show', 'store');  
-    Route::get('get-order-items/{order}', [OrderController::class, 'getOrderItems']);
-    Route::get('get-user-orders/{user}', [OrderController::class, 'getUserOrders']);
-    Route::post('change-order-status/{order}', [OrderController::class, 'changeOrderStatus']);
+    Route::prefix('orders')->group(function () {
+        Route::get('get-order-items/{order}', [OrderController::class, 'getOrderItems']);
+        Route::get('get-user-orders/{user}', [OrderController::class, 'getUserOrders']);
+        Route::post('change-order-status/{order}', [OrderController::class, 'changeOrderStatus']);
+    });
 });
