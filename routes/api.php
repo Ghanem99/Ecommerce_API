@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LocationController;
@@ -25,4 +26,8 @@ Route::group([
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('locations', LocationController::class)->except('index');
     Route::apiResource('products', ProductController::class);
+    Route::apiResource('orders', OrderController::class)->only('index', 'show', 'store');  
+    Route::get('get-order-items/{order}', [OrderController::class, 'getOrderItems']);
+    Route::get('get-user-orders/{user}', [OrderController::class, 'getUserOrders']);
+    Route::post('change-order-status/{order}', [OrderController::class, 'changeOrderStatus']);
 });
