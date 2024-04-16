@@ -24,7 +24,7 @@ Route::group([
     
     Route::apiResource('brands', BrandController::class);
     Route::apiResource('categories', CategoryController::class);
-    Route::apiResource('locations', LocationController::class)->except('index');
+    Route::apiResource('locations', LocationController::class);
     Route::apiResource('products', ProductController::class);
     
     Route::apiResource('orders', OrderController::class)->only('index', 'show', 'store');  

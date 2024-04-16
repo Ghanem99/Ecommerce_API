@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 class LocationController extends Controller
 {
+    public function index() 
+    {
+        $locations = Location::all();
+        return response()->json($locations);
+    }
+    
     public function store(Request $request) 
     {
         $request->validate([
@@ -15,6 +21,7 @@ class LocationController extends Controller
             'building' => 'required|string',
             'area' => 'required|string',
         ]);
+        dd(Auth::id());
 
         $location = Location::create([
             'street' => $request->street,
@@ -22,7 +29,7 @@ class LocationController extends Controller
             'area' => $request->area,
             'user_id' => Auth::id(),
         ]);
-        
+        dd($location);
         return response()->json($location, 201);
     }
 

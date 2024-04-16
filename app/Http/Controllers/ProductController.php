@@ -25,10 +25,10 @@ class ProductController extends Controller
             'brand_id' => 'required|exists:brands,id',
             'category_id' => 'required|exists:categories,id',
             'image' => 'required|image', 
-            'is_trendy' => 'required|boolean',
-            'is_available' => 'required|boolean',
-            'amount' => 'required|numeric',
-            'discount' => 'required|numeric'
+            'is_trendy' => 'boolean',
+            'is_available' => 'boolean',
+            'amount' => 'numeric',
+            'discount' => 'numeric'
         ]);
         
         if ($request->hasFile('image')) {
